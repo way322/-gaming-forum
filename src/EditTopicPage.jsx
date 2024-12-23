@@ -10,6 +10,8 @@ import { updateTournamentTopic } from './features/tournamentsSlice';
 import { updateMetaTopic } from './features/metaSlice';
 import { updateTeamFinderTopic } from './features/teamFindersSlice'; // Импортируем updateTeamFinderTopic
 import { updateUpdatesTopic } from './features/updatesSlice';
+import d from './editropic.module.css'
+import imgl from './assets/logo.png'
 
 export const EditTopicPage = () => {
   const { type, id } = useParams();
@@ -29,9 +31,9 @@ export const EditTopicPage = () => {
       return state.tournaments.topics || [];
     } else if (type === 'meta') {
       return state.meta.topics || [];
-    } else if (type === 'team-finder') { // Добавлено для team-finder
+    } else if (type === 'team-finder') { 
       return state.teamFinders.topics || [];
-    } else if (type === 'updates') { // Добавлено для updates
+    } else if (type === 'updates') { 
       return state.updates.topics || [];
     }
     return [];
@@ -72,51 +74,57 @@ export const EditTopicPage = () => {
       dispatch(updateUpdatesTopic({ id: parseInt(id), updatedTopic }));
     }
 
-    navigate(`/details/${type}/${id}`); // Перенаправляем на страницу темы
+    navigate(`/details/${type}/${id}`); 
   };
 
   return (
-    <div>
-      <header className="header">
-        <h1>Редактировать тему</h1>
-        <nav>
-          <Link to="/">Главная страница</Link>
-          <Link to={`/${type}/${id}`}>Назад к теме</Link>
+    <div className={d.container}>
+      <header className={d.header}>
+        <div className={d.conteinerlogo}>
+        <img src={imgl} alt="logo" className={d.logo} />
+        <h1 className={d.title}>Gamer's Hub</h1>
+        </div>
+        <nav className={d.nav}>
+          <Link to="/" className={d.navLink}>Главная страница</Link>
+          <Link to={`/details/${type}/${id}`} className={d.navLink}>Назад к теме</Link>
         </nav>
       </header>
 
-      <main className="content">
-        <form onSubmit={(e) => { e.preventDefault(); handleUpdate(); }}>
-          <div>
-            <label>Никнейм:</label>
+      <main className={d.content}>
+        <form onSubmit={(e) => { e.preventDefault(); handleUpdate(); }} className={d.form}>
+          <div className={d.formGroup}>
+            <label className={d.label1}>Никнейм:</label>
             <input
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               required
+              className={d.input1}
             />
           </div>
-          <div>
-            <label>Тема:</label>
+          <div className={d.formGroup}>
+            <label className={d.label2}>Тема:</label>
             <input
               type="text"
               value={topicTitle}
               onChange={(e) => setTopicTitle(e.target.value)}
               required
+              className={d.input2}
             />
           </div>
-          <div>
-            <label>Описание:</label>
+          <div className={d.formGroup}>
+            <label className={d.label3}>Описание:</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
+              className={d.textarea}
             />
           </div>
           
-          <button type="submit">Со хранить изменения</button>
+          <button type="submit" className={d.submitButton}>Сохранить изменения</button>
         </form>
       </main>
     </div>
   );
-};
+}

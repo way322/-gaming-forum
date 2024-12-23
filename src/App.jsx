@@ -1,11 +1,12 @@
 // app.jsx
 import { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'; 
+import { useSelector } from 'react-redux';
 import imgd from './assets/dota2.png';
 import imgm from './assets/minecraf.png';
 import imgc from './assets/counter-strike2.png';
-import './App.css';
+import imgl from './assets/logo.png';
+import styles from './App.module.css';
 
 export const App = () => {
   const [count, setCount] = useState(0);
@@ -20,7 +21,7 @@ export const App = () => {
   const updatesTopics = useSelector((state) => state.updates.topics);
 
   const allTopics = [
-    ...buildsTopics.map(topic => ({ ...topic, type: 'Билды', game: 'Dota 2 beta' })), 
+    ...buildsTopics.map(topic => ({ ...topic, type: 'Билды', game: 'Dota 2 beta' })),
     ...customsTopics.map(topic => ({ ...topic, type: 'Кастомки', game: 'Dota 2 beta' })),
     ...bugsTopics.map(topic => ({ ...topic, type: 'Баги', game: 'Dota 2 beta' })),
     ...skinsTopics.map(topic => ({ ...topic, type: 'Скины', game: 'Dota 2 beta' })),
@@ -32,74 +33,103 @@ export const App = () => {
 
   return (
     <div>
-      <header>
-        <h1>Gamer's Hub</h1>
+      <header className={styles.header}>
+        <div className={styles.divHeader}>
+          <img src={imgl} alt="logo" className={styles.logo} />
+          <h1 className={styles.name}>Gamer's Hub</h1>
+        </div>
       </header>
 
-      <div>
-        <div>
-          <div>
-            <img src={imgd} alt="Dota 2" />
-            <h3>Dota 2 beta</h3>
+      <div className={styles.conteiner}>
+        <div className={styles.conteiner2}>
+          {/* Dota 2 Section */}
+          <div className={styles.conteinerGame}>
+            <div className={styles.nameGame}>
+              <img src={imgd} alt="Dota 2" />
+              <h3 className={styles.h3}>Dota 2 beta</h3>
+            </div>
+            <ul>
+              <div className={styles.linkRow}>
+                <li><Link to="/dota2/builds" className={styles.a}>Билды</Link></li>
+                <li><Link to="/dota2/team-finder" className={styles.a}>Поиск тимейтов</Link></li>
+                <li><Link to="/dota2/customs" className={styles.a}>Кастомки</Link></li>
+                <li><Link to="/dota2/skins" className={styles.a}>Скины</Link></li>
+              </div>
+              <div className={styles.linkRow}>
+                <li><Link to="/dota2/meta" className={styles.a}>Мета</Link></li>
+                <li><Link to="/dota2/tournaments" className={styles.a}>Турниры</Link></li>
+                <li><Link to="/dota2/bugs" className={styles.a}>Баги </Link></li>
+                <li><Link to="/dota2/updates" className={styles.a}>Обновления</Link></li>
+              </div>
+            </ul>
           </div>
-          <ul>
-            <li><Link to="/dota2/builds">Билды</Link></li>
-            <li><Link to="/dota2/team-finder">Поиск тимейтов</Link></li>
-            <li><Link to="/dota2/customs">Кастомки</Link></li>
-            <li><Link to="/dota2/skins">Скины</Link></li>
-            <li><Link to="/dota2/meta">Мета</Link></li>
-            <li><Link to="/dota2/tournaments">Турниры</Link></li>
-            <li><Link to="/dota2/bugs">Баги</Link></li>
-            <li><Link to="/dota2/updates">Обновления</Link></li>
-          </ul>
+
+          {/* Counter-Strike 2 Section */}
+          <div className={styles.conteinerGame}>
+            <div className={styles.nameGame}>
+              <img src={imgc} alt="Counter-Strike 2" />
+              <h3 className={styles.h3}>Counter-Strike 2</h3>
+            </div>
+            <ul>
+              <div className={styles.linkRow}>
+                <li><Link to="/cs2/bugs" className={styles.a}>Баги</Link></li>
+                <li><Link to="/cs2/anti-cheat" className={styles.a}>Где античит</Link></li>
+                <li><Link to="/cs2/throws" className={styles.a}>Ракиды</Link></li>
+                <li><Link to="/cs2/workshop" className={styles.a}>Мастерская</Link></li>
+              </div>
+              <div className={styles.linkRow}>
+                <li><Link to="/cs2/updates" className={styles.a}>Обновления</Link></li>
+                <li><Link to="/cs2/skins" className={styles.a}>Скины</Link></li>
+                <li><Link to="/cs2/team-finder" className={styles.a}>Поиск тимейтов</Link></li>
+                <li><Link to="/cs2/tournaments" className={styles.a}>Турниры</Link></li>
+              </div>
+            </ul>
+          </div>
+
+          {/* Minecraft Section */}
+          <div className={styles.conteinerGame}>
+            <div className={styles.nameGame}>
+              <img src={imgm} alt="Minecraft" />
+              <h3 className={styles.h3}>Minecraft</h3>
+            </div>
+            <ul>
+              <div className={styles.linkRow}>
+                <li><Link to="/minecraft/mods" className={styles.a}>Моды</Link></li>
+                <li><Link to="/minecraft/team-finder" className={styles.a}>Поиск тимейтов</Link></li>
+                <li><Link to="/minecraft/servers" className={styles.a}>Сервера</Link></li>
+                <li><Link to="/minecraft/shaders" className={styles.a}>Шейдеры</Link></li>
+              </div>
+              <div className={styles.linkRow}>
+                <li><Link to="/minecraft/minigames" className={styles.a}>Мини игры</Link></li>
+                <li><Link to="/minecraft/skins" className={styles.a}>Скины</Link></li>
+                <li><Link to="/minecraft/maps" className={styles.a}>Карты</Link></li>
+                <li><Link to="/minecraft/resource-packs" className={styles.a}>Текстур паки</Link></li>
+              </div>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <div>
-            <img src={imgc} alt="Counter-Strike 2" />
-            <h3>Counter-Strike 2</h3>
-          </div>
+        <div className={styles.tema}>
           <ul>
-            <li><Link to="/cs2/bugs">Баги</Link></li>
-            <li><Link to="/cs2/anti-cheat">Где античит</Link></li>
-            <li><Link to="/cs2/throws">Ракиды</Link></li>
-            <li><Link to="/cs2/workshop">Мастерская</Link></li>
-            <li><Link to="/cs2/updates">Обновления</Link></li>
-            <li><Link to="/cs2/skins">Скины</Link></li>
-            <li><Link to="/cs2/team-finder">Поиск тимейтов</Link></li>
-            <li><Link to="/cs2/tournaments">Турниры</Link></li>
-          </ ul>
-        </div>
-
-        <div>
-          <div>
-            <img src={imgm} alt="Minecraft" />
-            <h3>Minecraft</h3>
-          </div>
-          <ul>
-            <li><Link to="/minecraft/mods">Моды</Link></li>
-            <li><Link to="/minecraft/team-finder">Поиск тимейтов</Link></li>
-            <li><Link to="/minecraft/servers">Сервера</Link></li>
-            <li><Link to="/minecraft/shaders">Шейдеры</Link></li>
-            <li><Link to="/minecraft/minigames">Мини игры</Link></li>
-            <li><Link to="/minecraft/skins">Скины</Link></li>
-            <li><Link to="/minecraft/maps">Карты</Link></li>
-            <li><Link to="/minecraft/resource-packs">Текстур паки</Link></li>
+            {allTopics.map((topic, index) => (
+              <div className={styles.temaContener} key={topic.id || index}>
+                <li>
+                  <div className={styles.texttema}>
+                    <span className={styles.textInfo}>{topic.topic}</span>
+                  </div>
+                  <div className={styles.topicDetails}>
+                    <span className={styles.textinfo2}>{topic.nickname}</span>
+                    <div className={styles.textinfogame}>
+                      <span className={styles.textinfo2}>{topic.type}</span>
+                      <span className={styles.textinfo2}>{topic.game}</span>
+                    </div>
+                  </div>
+                </li>
+              </div>
+            ))}
           </ul>
         </div>
       </div>
-
-      <div>
-        <h2>Созданные темы:</h2>
-        <ul>
-          {allTopics.map((topic, index) => (
-            <li key={index}>
-              <strong>Тема:</strong> {topic.topic} | <strong>Никнейм:</strong> {topic.nickname} | <strong>Тип:</strong> {topic.type} | <strong>Игра:</strong> {topic.game}
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div>
         <Outlet />
       </div>

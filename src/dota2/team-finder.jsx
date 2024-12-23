@@ -3,28 +3,41 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import s from './Dota.module.css'; 
+import imgl from '../assets/logo.png';
+import imgz from '../assets/izmen.png';
+import imgd from '../assets/dota2.png';
 
 export const DotaTeamFinder = () => {
-  const teamFinders = useSelector((state) => state.teamFinders.topics || []); // Получаем темы поиска тимейтов из Redux
+  const teamFinders = useSelector((state) => state.teamFinders.topics || []); 
 
   return (
-    <div className={s.buildsContainer}> {/* Используем CSS-класс из Dota.module.css */}
-      <header className={s.header}> {/* Используем CSS-класс из Dota.module.css */}
-        <h1>Gamer's Hub</h1>
-        <nav>
-          <Link to="/">Главная страница</Link>
-          <Link to="/create-topic" state={{ from: '/dota2/team-finder' }}>Создать тему</Link>
-        </nav>
+    <div className={s.buildsContainer}> 
+      <header className={s.header}> 
+        <div className={s.conteinerlogo}>
+          <img src={imgl} alt="logo" />
+          <h1 className={s.name}>Gamer's Hub</h1>
+        </div>
+        <Link to="/" className={s.textgs}>Главная страница</Link>
+        <div className={s.conteinerlogo}>
+          <Link to="/create-topic" state={{ from: '/dota2/team-finder' }} className={s.textizmen}>Создать тему</Link>
+          <img src={imgz} alt="logo" />
+        </div>
       </header>
 
-      <main className={s.content}> {/* Используем CSS-класс из Dota.module.css */}
+      <main className={s.content}> 
         {teamFinders.length > 0 ? (
           teamFinders.map((teamFinder, index) => (
-            <div className={s.topic} key={index}> {/* Используем CSS-класс из Dota.module.css */}
-              <Link to={`/details/team-finder/${index}`}> {/* Исправленная ссылка */}
-                <h1>{teamFinder.nickname}</h1>
-                <h2>{teamFinder.topic}</h2>
-                <h2>Dota 2 Team Finder</h2>
+            <div className={s.topic} key={index}> 
+              <Link to={`/details/team-finder/${index}`} className={s.a}> 
+                <div>
+                  <h1 className={s.gtext}>{teamFinder.nickname}</h1>
+                  <h2 className={s.text}>{teamFinder.topic}</h2>
+                </div>
+                <div className={s.contenerd}>
+                  <h2 className={`${s.text} ${s.text2}`}>
+                    <img src={imgd} alt="logo" className={s.dota} />Dota 2 Team Finder
+                  </h2>
+                </div>
               </Link>
             </div>
           ))

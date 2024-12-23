@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import s from './Dota.module.css'; 
+import imgl from '../assets/logo.png';
+import imgz from '../assets/izmen.png';
+import imgd from '../assets/dota2.png'
 
 export const Dotabuild = () => {
   const topics = useSelector((state) => state.builds.topics || []);
@@ -10,22 +13,30 @@ export const Dotabuild = () => {
   return (
     <div className={s.buildsContainer}>
       <header className={s.header}>
-        <h1>Gamer's Hub</h1>
-        <nav>
-          <Link to="/">Главная страница</Link>
-          <Link to="/create-topic" state={{ from: '/dota2/builds' }}>Создать тему</Link>
-        </nav>
+        <div className={s.conteinerlogo}>
+        <img src={imgl} alt="logo"/>
+        <h1 className={s.name}>Gamer's Hub</h1>
+        </div>
+          <Link to="/" className={s.textgs}>Главная страница</Link>
+          <div className={s.conteinerlogo}>
+            <Link to="/create-topic" state={{ from: '/dota2/builds' }} className={s.textizmen}>Создать тему</Link>
+            <img src={imgz} alt="logo"/>
+          </div>
       </header>
 
       <main className={s.content}>
         {topics.length > 0 ? (
           topics.map((topic, index) => (
             <div className={s.topic} key={index}>
-              <Link to={`/details/builds/${index}`}>
-                <h1>{topic.nickname}</h1>
-                <h2>{topic.topic}</h2>
-                <h2>Dota 2 beta</h2>
-                <h2>билды</h2>
+              <Link to={`/details/builds/${index}` } className={s.a}>
+              <div>
+                <h1 className={s.gtext}>{topic.topic}</h1>
+                <h1 className={s.text}>{topic.nickname}</h1>
+              </div>
+              <div className={s.contenerd}>
+                <h2 className={`${s.text} ${s.text2}`}><img src={imgd} alt="logo" className={s.dota}/>Dota 2 beta</h2>
+                <h2 className={s.text}>билды</h2>
+              </div>
               </Link>
             </div>
           ))

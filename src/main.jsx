@@ -4,12 +4,12 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import store from './store'; 
-import Rout from './routs.jsx'; // Change Roust to Rout
+import Rout from './routs.jsx'; 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <Rout/> {/* Change Roust to Rout */}
+      <Rout/> 
     </Provider>
   </StrictMode>
 );
