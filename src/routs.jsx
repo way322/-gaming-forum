@@ -14,7 +14,14 @@ import { ErrorPage404 } from './ErrorPage404.jsx'; // Импортируем с�
 import {DotaMeta} from './dota2/meta.jsx';
 import {DotaTeamFinder} from './dota2/team-finder.jsx'
 import {DotaUpdates} from './dota2/updates.jsx'
-
+import {Csbugs} from './cs2/csbugs.jsx'
+import {AntiCheat} from './cs2/AntiCheat.jsx'
+import {Throws} from './cs2/Throws.jsx'
+import {Workshop} from './cs2/Workshop.jsx'
+import {CsUpdates} from './cs2/CsUpdates.jsx'
+import {CsKins} from './cs2/CsKins.jsx'
+import {CsTeamFinder} from './cs2/CsTeamFinder.jsx'
+import {CsTournaments} from './cs2/CsTournaments.jsx'
 
 let router = createBrowserRouter([
   {
@@ -62,6 +69,30 @@ let router = createBrowserRouter([
   },{
     path: '/dota2/updates',
     element: <DotaUpdates />,
+  },{
+    path: '/cs2/csbugs',
+    element: <Csbugs />,
+  },{
+    path: '/cs2/antiCheat',
+    element: <AntiCheat />,
+  },{
+    path: '/cs2/throws',
+    element: <Throws />,
+  },{
+    path: '/cs2/workshop',
+    element: <Workshop />,
+  },{
+    path: '/cs2/csupdates',
+    element: < CsUpdates/>,
+  },{
+    path: '/cs2/cskins',
+    element: <CsKins />,
+  },{
+    path: '/cs2/csteam-finder',
+    element: <CsTeamFinder />,
+  },{
+    path: '/cs2/cstournaments',
+    element: <CsTournaments />,
   },
 ]);
 

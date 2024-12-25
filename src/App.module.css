@@ -47,7 +47,7 @@ ul, li {
 }
 
 .conteiner {
-    margin-top: 30px;
+    margin-top: 70px;
     margin-right: 50px;
     margin-left: 50px;
     display: flex;
@@ -55,7 +55,7 @@ ul, li {
 .conteinerGame {
     background-color: #1E1E1E;
     border-radius: 40px;
-    padding: 10px;
+    padding: 50px;
     margin-bottom: 20px;
     width: 1155px;
 }

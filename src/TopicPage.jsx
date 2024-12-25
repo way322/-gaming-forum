@@ -1,3 +1,4 @@
+// TopicPage.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,8 +10,16 @@ import { addTournamentTopic } from './features/tournamentsSlice';
 import { addMetaTopic } from './features/metaSlice';
 import { addTeamFinderTopic } from './features/teamFindersSlice';
 import { addUpdatesTopic } from './features/updatesSlice';
-import a from './topicpage.module.css'
-import imgl from './assets/logo.png'
+import { addCsBugsTopic } from './features/csBugsSlice'; 
+import { addAntiCheatTopic } from './features/antiCheatSlice'; 
+import { addThrowTopic } from './features/throwsSlice'; 
+import { addWorkshopTopic } from './features/workshopSlice'; 
+import { addCsUpdateTopic } from './features/csUpdatesSlice'; 
+import { addCsKinTopic } from './features/csKinsSlice';
+import { addCsTeamFinderTopic } from './features/csTeamFinderSlice'; 
+import { addCsTournamentTopic } from './features/csTournamentsSlice';
+import a from './topicpage.module.css';
+import imgl from './assets/logo.png';
 
 export const TopicPage = () => {
   const [nickname, setNickname] = useState('');
@@ -19,7 +28,6 @@ export const TopicPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
@@ -30,7 +38,6 @@ export const TopicPage = () => {
     if (savedTopic) setTopic(savedTopic);
     if (savedDescription) setDescription(savedDescription);
   }, []);
-
 
   useEffect(() => {
     localStorage.setItem('nickname', nickname);
@@ -49,32 +56,39 @@ export const TopicPage = () => {
     console.log('Publishing topic from:', fromPage);
 
     if (fromPage === '/dota2/builds') {
-      console.log('Dispatching ADD_BUILD_TOPIC:', newTopic);
       dispatch(addBuildTopic(newTopic));
     } else if (fromPage === '/dota2/customs') {
-      console.log('Dispatching ADD_CUSTOM_TOPIC:', newTopic);
       dispatch(addCustomTopic(newTopic));
     } else if (fromPage === '/dota2/bugs') {
-      console.log('Dispatching ADD_BUGS_TOPIC:', newTopic);
       dispatch(addBugsTopic(newTopic));
-    } else if (fromPage === '/dota2/skins') {
-      console.log('Dispatching ADD_SKINS_TOPIC:', newTopic);
+    } else if (fromPage === '/dota2 /skins') {
       dispatch(addSkinsTopic(newTopic));
     } else if (fromPage === '/dota2/tournaments') {
-      console.log('Dispatching ADD_TOURNAMENT_TOPIC:', newTopic);
       dispatch(addTournamentTopic(newTopic));
     } else if (fromPage === '/dota2/meta') {
-      console.log('Dispatching ADD_META_TOPIC:', newTopic);
       dispatch(addMetaTopic(newTopic));
     } else if (fromPage === '/dota2/team-finder') {
-      console.log('Dispatching ADD_TEAM_FINDER_TOPIC:', newTopic);
       dispatch(addTeamFinderTopic(newTopic));
     } else if (fromPage === '/dota2/updates') {
-      console.log('Dispatching ADD_UPDATES_TOPIC:', newTopic);
       dispatch(addUpdatesTopic(newTopic));
+    } else if (fromPage === '/cs2/csbugs') {
+      dispatch(addCsBugsTopic(newTopic));
+    } else if (fromPage === '/cs2/antiCheat') {
+      dispatch(addAntiCheatTopic(newTopic));
+    } else if (fromPage === '/cs2/throws') {
+      dispatch(addThrowTopic(newTopic));
+    } else if (fromPage === '/cs2/workshop') {
+      dispatch(addWorkshopTopic(newTopic));
+    } else if (fromPage === '/cs2/csupdates') {
+      dispatch(addCsUpdateTopic(newTopic));
+    } else if (fromPage === '/cs2/cskins') {
+      dispatch(addCsKinTopic(newTopic));
+    } else if (fromPage === '/cs2/csteam-finder') {
+      dispatch(addCsTeamFinderTopic(newTopic));
+    } else if (fromPage === '/cs2/cstournaments') {
+      dispatch(addCsTournamentTopic(newTopic)); 
     }
 
-    // Очистка localStorage после публикации
     localStorage.removeItem('nickname');
     localStorage.removeItem('topic');
     localStorage.removeItem('description');

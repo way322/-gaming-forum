@@ -8,10 +8,18 @@ import { updateBugsTopic } from './features/bugsSlice';
 import { updateSkinsTopic } from './features/skinsSlice';
 import { updateTournamentTopic } from './features/tournamentsSlice';
 import { updateMetaTopic } from './features/metaSlice';
-import { updateTeamFinderTopic } from './features/teamFindersSlice'; // Импортируем updateTeamFinderTopic
+import { updateTeamFinderTopic } from './features/teamFindersSlice';
 import { updateUpdatesTopic } from './features/updatesSlice';
-import d from './editropic.module.css'
-import imgl from './assets/logo.png'
+import { updateCsBugsTopic } from './features/csBugsSlice'; 
+import { updateAntiCheatTopic } from './features/antiCheatSlice'; 
+import { updateThrowTopic } from './features/throwsSlice'; 
+import { updateWorkshopTopic } from './features/workshopSlice'; 
+import { updateCsUpdateTopic } from './features/csUpdatesSlice'; 
+import { updateCsKinTopic } from './features/csKinsSlice'; 
+import { updateCsTeamFinderTopic } from './features/csTeamFinderSlice';
+import { updateCsTournamentTopic } from './features/csTournamentsSlice';
+import d from './editropic.module.css';
+import imgl from './assets/logo.png';
 
 export const EditTopicPage = () => {
   const { type, id } = useParams();
@@ -35,6 +43,22 @@ export const EditTopicPage = () => {
       return state.teamFinders.topics || [];
     } else if (type === 'updates') { 
       return state.updates.topics || [];
+    } else if (type === 'csbugs') { 
+      return state.csBugs.topics || []; 
+    } else if (type === 'antiCheat') { 
+      return state.antiCheat.topics || [];
+    } else if (type === 'throws') { 
+      return state.throws.topics || []; 
+    } else if (type === 'workshop') { 
+      return state.workshop.topics || []; 
+    } else if (type === 'csupdates') { 
+      return state.csUpdates.topics || []; 
+    } else if (type === 'cskins') { 
+      return state.csKins.topics || []; 
+    } else if (type === 'csteam-finder') { 
+      return state.csTeamFinder.topics || []; 
+    } else if (type === 'cstournaments') { 
+      return state.csTournaments.topics || []; 
     }
     return [];
   });
@@ -72,7 +96,24 @@ export const EditTopicPage = () => {
       dispatch(updateTeamFinderTopic({ id: parseInt(id), updatedTopic }));
     } else if (type === 'updates') { 
       dispatch(updateUpdatesTopic({ id: parseInt(id), updatedTopic }));
+    } else if (type === 'csbugs') { 
+      dispatch(updateCsBugsTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'antiCheat') { 
+      dispatch(updateAntiCheatTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'throws') { 
+      dispatch(updateThrowTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'workshop') { 
+      dispatch(updateWorkshopTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'csupdates') { 
+      dispatch(updateCsUpdateTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'cskins') { 
+      dispatch(updateCsKinTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'csteam-finder') {
+      dispatch(updateCsTeamFinderTopic({ id: parseInt(id), updatedTopic })); 
+    } else if (type === 'cstournaments') { 
+      dispatch(updateCsTournamentTopic({ id: parseInt(id), updatedTopic })); 
     }
+
 
     navigate(`/details/${type}/${id}`); 
   };
@@ -81,8 +122,8 @@ export const EditTopicPage = () => {
     <div className={d.container}>
       <header className={d.header}>
         <div className={d.conteinerlogo}>
-        <img src={imgl} alt="logo" className={d.logo} />
-        <h1 className={d.title}>Gamer's Hub</h1>
+          <img src={imgl} alt="logo" className={d.logo} />
+          <h1 className={d.title}>Gamer's Hub</h1>
         </div>
         <nav className={d.nav}>
           <Link to="/" className={d.navLink}>Главная страница</Link>
@@ -121,10 +162,10 @@ export const EditTopicPage = () => {
               className={d.textarea}
             />
           </div>
-          
+
           <button type="submit" className={d.submitButton}>Сохранить изменения</button>
         </form>
       </main>
     </div>
   );
-}
+};

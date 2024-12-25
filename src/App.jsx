@@ -1,9 +1,9 @@
 // app.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import imgd from './assets/dota2.png';
-import imgm from './assets/minecraf.png';
+import { initSnow } from './snow'; 
 import imgc from './assets/counter-strike2.png';
 import imgl from './assets/logo.png';
 import styles from './App.module.css';
@@ -19,7 +19,14 @@ export const App = () => {
   const metaTopics = useSelector((state) => state.meta.topics);
   const teamFindersTopics = useSelector((state) => state.teamFinders.topics);
   const updatesTopics = useSelector((state) => state.updates.topics);
-
+  const csBugsTopics = useSelector((state) => state.csBugs.topics);
+  const antiCheatTopics = useSelector((state) => state.antiCheat.topics); 
+  const throwsTopics = useSelector((state) => state.throws.topics); 
+  const workshopTopics = useSelector((state) => state.workshop.topics); 
+  const csUpdatesTopics = useSelector((state) => state.csUpdates.topics);
+  const csKinsTopics = useSelector((state) => state.csKins.topics);
+  const csTeamFinderTopics = useSelector((state) => state.csTeamFinder.topics);
+  const csTournamentsTopics = useSelector((state) => state.csTournaments.topics);
   const allTopics = [
     ...buildsTopics.map(topic => ({ ...topic, type: 'Билды', game: 'Dota 2 beta' })),
     ...customsTopics.map(topic => ({ ...topic, type: 'Кастомки', game: 'Dota 2 beta' })),
@@ -29,7 +36,19 @@ export const App = () => {
     ...metaTopics.map(topic => ({ ...topic, type: 'Мета', game: 'Dota 2 beta' })),
     ...teamFindersTopics.map(topic => ({ ...topic, type: 'Поиск тимейтов', game: 'Dota 2 beta' })),
     ...updatesTopics.map(topic => ({ ...topic, type: 'Обновления', game: 'Dota 2 beta' })),
+    ...csBugsTopics.map(topic => ({ ...topic, type: 'Баги', game: 'CS 2' })),
+    ...antiCheatTopics.map(topic => ({ ...topic, type: 'Античит', game: 'CS 2' })),
+    ...throwsTopics.map(topic => ({ ...topic, type: 'Раскид', game: 'CS 2' })),
+    ...workshopTopics.map(topic => ({ ...topic, type: 'Мастерская', game: 'CS 2' })),
+    ...csUpdatesTopics.map(topic => ({ ...topic, type: 'Обновления', game: 'CS 2' })),
+    ...csKinsTopics.map(topic => ({ ...topic, type: 'Скины', game: 'CS 2' })),
+    ...csTeamFinderTopics.map(topic => ({ ...topic, type: 'Поиск тимейтов', game: 'CS 2' })),
+    ...csTournamentsTopics.map(topic => ({ ...topic, type: 'Турниры', game: 'CS 2' })),
   ];
+
+  useEffect(() => {
+    initSnow(); // Вызовите функцию инициализации снежинок
+  }, []);
 
   return (
     <div>
@@ -72,38 +91,16 @@ export const App = () => {
             </div>
             <ul>
               <div className={styles.linkRow}>
-                <li><Link to="/cs2/bugs" className={styles.a}>Баги</Link></li>
-                <li><Link to="/cs2/anti-cheat" className={styles.a}>Где античит</Link></li>
-                <li><Link to="/cs2/throws" className={styles.a}>Ракиды</Link></li>
+                <li><Link to="/cs2/csbugs" className={styles.a}>Баги</Link></li>
+                <li><Link to="/cs2/antiCheat" className={styles.a}>Где античит</Link></li>
+                <li><Link to="/cs2/throws" className={styles.a}>Раскиды</Link></li>
                 <li><Link to="/cs2/workshop" className={styles.a}>Мастерская</Link></li>
               </div>
               <div className={styles.linkRow}>
-                <li><Link to="/cs2/updates" className={styles.a}>Обновления</Link></li>
-                <li><Link to="/cs2/skins" className={styles.a}>Скины</Link></li>
-                <li><Link to="/cs2/team-finder" className={styles.a}>Поиск тимейтов</Link></li>
-                <li><Link to="/cs2/tournaments" className={styles.a}>Турниры</Link></li>
-              </div>
-            </ul>
-          </div>
-
-          {/* Minecraft Section */}
-          <div className={styles.conteinerGame}>
-            <div className={styles.nameGame}>
-              <img src={imgm} alt="Minecraft" />
-              <h3 className={styles.h3}>Minecraft</h3>
-            </div>
-            <ul>
-              <div className={styles.linkRow}>
-                <li><Link to="/minecraft/mods" className={styles.a}>Моды</Link></li>
-                <li><Link to="/minecraft/team-finder" className={styles.a}>Поиск тимейтов</Link></li>
-                <li><Link to="/minecraft/servers" className={styles.a}>Сервера</Link></li>
-                <li><Link to="/minecraft/shaders" className={styles.a}>Шейдеры</Link></li>
-              </div>
-              <div className={styles.linkRow}>
-                <li><Link to="/minecraft/minigames" className={styles.a}>Мини игры</Link></li>
-                <li><Link to="/minecraft/skins" className={styles.a}>Скины</Link></li>
-                <li><Link to="/minecraft/maps" className={styles.a}>Карты</Link></li>
-                <li><Link to="/minecraft/resource-packs" className={styles.a}>Текстур паки</Link></li>
+                <li><Link to="/cs2/csupdates" className={styles.a}>Обновления</Link></li>
+                <li><Link to="/cs2/cskins" className={styles.a}>Скины</Link></li>
+                <li><Link to="/cs2/csteam-finder" className={styles.a}>Поиск тимейтов</Link></li>
+                <li><Link to="/cs2/cstournaments" className={styles.a}>Турниры</Link></li>
               </div>
             </ul>
           </div>
